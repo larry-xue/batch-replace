@@ -42,13 +42,17 @@ const util = {
             document = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.document : null;
         }
         if (!document) {
-            this.showError('当前激活的编辑器不是文件或者没有文件被打开！');
+            this.showError('当前工程不是文件夹形式或者没有文件，无法使用！');
             return '';
         }
         currentFile = (document.uri ? document.uri : document).fsPath;
         util.currentFile = currentFile;
         let projectPath = null;
 
+        if (!vscode.workspace.workspaceFolders) {
+            this.showError('当前工程不是文件夹形式，无法使用！')
+            return '';
+        }
         let workspaceFolders = vscode.workspace.workspaceFolders.map(item => item.uri.fsPath);
 
         // 由于存在Multi-root工作区，暂时没有特别好的判断方法，先这样粗暴判断
