@@ -4,7 +4,7 @@
         {
             "label": "createEmptyWorkspace",
             "type": "shell",
-            "command": "mkdir -p ${workspaceRoot}/empty"
+            "command": "if (-not (Test-Path \"${workspaceRoot}\\empty\")) { New-Item -ItemType Directory -Force -Path \"${workspaceRoot}\\empty\" }"
         }
     ]
 }
