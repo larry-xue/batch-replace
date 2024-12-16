@@ -119,7 +119,7 @@ const util = {
         let pos = [];
         let matches;
         for (let index = 0; index < rules.length; index++) {
-            const rows = content.split(os.EOL); // 分行查找只为了拿到行
+            const rows = content.split(/\r\n|\r|\n/); // 分行查找只为了拿到行
             let rule = new RegExp(rules[index].find, 'g'); // 正则匹配
             for (let i = 0; i < rows.length; i++) {
                 while ((matches = rule.exec(rows[i]))) {
